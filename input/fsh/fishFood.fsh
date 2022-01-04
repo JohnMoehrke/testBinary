@@ -13,7 +13,7 @@ Description: "Example of a hello world binary using DocumentReference."
 // likely needs a IG extension - implementationguide-resource-format
 Instance: B-hello-world
 InstanceOf: Binary
-Title: "Binarty example using Binary"
+Title: "Binary example using Binary"
 Description: "Example of a binary hello world using Binary."
 * contentType = #application/xml
 * data = "ig-loader-helloWorld.txt"
