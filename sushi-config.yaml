@@ -2,9 +2,9 @@
 # │  The properties below are used to create the ImplementationGuide resource. For a list of       │
 # │  supported properties, see: https://fshschool.org/docs/sushi/configuration/                    │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-id: johnmoehrke.testBinary
+id: johnmoehrke.testbinary
 canonical: http://johnmoehrke.github.io/testBinary
-name: testBinary
+name: testbinary
 status: draft
 version: 0.1.0
 fhirVersion: 4.0.1
@@ -12,7 +12,7 @@ copyrightYear: 2021+
 releaseLabel: ci-build
 
 parameters:
-  path-binary: input/saml
+  path-binary: input/stuff
 
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
