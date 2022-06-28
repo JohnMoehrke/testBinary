@@ -1,6 +1,10 @@
 # testBundle
 
+<div markdown="1" class="dragon">
+
 This creates IG with two examples. Both bringing in a binary file. One using Binary, one using DocumentReference
+
+</div>
 
 [chat thread](https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/binary.20resources)
 and
