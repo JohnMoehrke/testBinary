@@ -4,7 +4,7 @@ This creates IG with two examples. Both bringing in a binary file. One using Bin
 
 Binary throws errors 
 
-- [ig locader still fails](https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/ig-loader.20examples)
+- [ig publisher still fails](https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/ig-loader.20examples)
   - [ig publisher issue](https://github.com/HL7/fhir-ig-publisher/issues/355)
 - [chat thread](https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/binary.20resources)
 - [sushi chat thread](https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/.22Big.20data.22)

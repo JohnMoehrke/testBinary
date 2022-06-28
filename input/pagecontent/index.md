@@ -7,7 +7,7 @@ This is an experimental IG. This IG creates two examples. Both bringing in a bin
 </div>
 <br clear="all">
 
-- [ig locader still fails](https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/ig-loader.20examples)
+- [ig publisher still fails](https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/ig-loader.20examples)
   - [ig publisher issue](https://github.com/HL7/fhir-ig-publisher/issues/355)
 - [chat thread](https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/binary.20resources)
 - [sushi chat thread](https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/.22Big.20data.22)
