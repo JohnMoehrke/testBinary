@@ -11,3 +11,4 @@ Binary throws errors
 - [sushi binary adjunct chat thread](https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/Binary.20Adjunct)
   - with resolved [sushi bug](https://github.com/FHIR/sushi/issues/1005)
 
+.
