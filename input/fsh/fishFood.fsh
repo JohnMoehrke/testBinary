@@ -13,8 +13,16 @@ Description: "Example of a hello world binary using DocumentReference."
 // likely needs a IG extension - implementationguide-resource-format
 Instance: B-hello-world
 InstanceOf: Binary
-Title: "Binary example using Binary"
+Title: "Binary example using Binary of text"
 Description: "Example of a binary hello world using Binary."
 * contentType = #text/plain
 * data = "ig-loader-helloWorld.txt"
 
+// binary throws a File Type error that DocumentReference does not
+// likely needs a IG extension - implementationguide-resource-format
+Instance: B-ink
+InstanceOf: Binary
+Title: "Binary example using Binary of png"
+Description: "Example of a binary ink signature using Binary."
+* contentType = #image/png
+* data = "ig-loader-ink.png"

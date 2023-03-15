@@ -6,7 +6,7 @@ id: johnmoehrke.testbinary
 canonical: http://johnmoehrke.github.io/testBinary
 name: TestBinary
 status: draft
-version: 0.1.0
+version: 0.1.1-current
 fhirVersion: 4.0.1
 copyrightYear: 2021+
 releaseLabel: ci-build
@@ -32,8 +32,7 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
   apply-jurisdiction: 'true'
   apply-publisher: 'true'
   apply-version: 'true'
-  path-binary:
-    - input/stuff
+  path-binary: input/stuff
 
 resources:
   Binary/B-hello-world:
@@ -48,3 +47,4 @@ resources:
 menu:
   Home: index.html
   Artifacts: artifacts.html
+  Downloads: download.html

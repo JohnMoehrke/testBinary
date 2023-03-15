@@ -2,11 +2,18 @@
 
 <div markdown="1" class="dragon">
 
-This is an experimental IG. This IG creates two examples. Both bringing in a binary file. One using Binary, one using DocumentReference
+This creates IG with three examples, to show that binary is not working with TEXT files.
+
+- DocumentReference of a TEXT binary works
+- Binary of a PNG binary works
+- Binary of a TEXT throws an error:
+
+> Binary (l1/c2)	error	Unknown file type helloWorld.txt
 
 </div>
 <br clear="all">
 
+- [GitHub repo](https://github.com/JohnMoehrke/testBinary)
 - [ig publisher still fails](https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/ig-loader.20examples)
   - [ig publisher issue](https://github.com/HL7/fhir-ig-publisher/issues/355)
 - [chat thread](https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/binary.20resources)
