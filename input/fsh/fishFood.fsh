@@ -1,12 +1,21 @@
 
+Profile:        DocumentReferenceFoo
+Parent:         DocumentReference
+Title:          "Just a simple profile of DocumentReference"
+Description:    "not much to say"
+* status = #current
+* content.attachment.contentType 1..1
+* modality MS
+
 Instance: Dr-hello-world
-InstanceOf: DocumentReference
+InstanceOf: DocumentReferenceFoo
 Title: "Binary example using DocumentReference"
 Description: "Example of a hello world binary using DocumentReference."
 * status = #current
 * content.attachment.id = "ig-loader-helloWorld.txt"
 //* content.attachment.url = "Binary/B-hello-world"
 * content.attachment.contentType = #text/plain
+* modality = http://dicom.nema.org/resources/ontology/DCM#US
 
 
 // binary throws a File Type error that DocumentReference does not

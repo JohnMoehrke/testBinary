@@ -7,7 +7,8 @@ canonical: http://johnmoehrke.github.io/testBinary
 name: TestBinary
 status: draft
 version: 0.1.1-current
-fhirVersion: 4.0.1
+#fhirVersion: 4.0.1
+fhirVersion: 5.0.0
 copyrightYear: 2021+
 releaseLabel: ci-build
 publisher:
@@ -16,6 +17,11 @@ publisher:
   email: JohnMoehrke@gmail.com
 license: CC-BY-SA-4.0
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
+
+dependencies:
+  fhir.dicom:
+    uri: http://fhir.org/packages/fhir.dicom
+    version: 2023.1.20230123
 
 parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
   path-resource:
