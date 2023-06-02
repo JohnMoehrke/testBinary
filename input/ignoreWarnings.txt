@@ -1,2 +1,6 @@
 == Suppressed Messages ==
 
+# One alternative to ignore this warning
+
+The valueSet reference http://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_33.html on element DocumentReference.modality could not be resolved
+ValueSet http://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_33.html not found by validator
