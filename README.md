@@ -1,5 +1,7 @@
 # test Binary attachments
 
+CI build - http://build.fhir.org/ig/JohnMoehrke/testBinary/branches/main/index.html
+
 This creates IG with three examples, to show that binary is not working with TEXT files.
 
 - DocumentReference of a TEXT binary works
