@@ -35,3 +35,18 @@ Title: "Binary example using Binary of png"
 Description: "Example of a binary ink signature using Binary."
 * contentType = #image/png
 * data = "ig-loader-ink.png"
+
+Instance: J-hello-world
+InstanceOf: Binary
+Title: "Binary example using Binary of json"
+Description: "Example of a json hello world using Binary."
+* contentType = #application/json
+* data = "ig-loader-helloWorld.json"
+
+Instance: x-hello-world
+InstanceOf: Binary
+Title: "Binary example using Binary of xml"
+Description: "Example of a xml hello world using Binary."
+* contentType = #application/xml
+* data = "ig-loader-helloWorld.xml"
+
