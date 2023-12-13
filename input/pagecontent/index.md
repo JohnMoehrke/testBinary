@@ -6,29 +6,18 @@ This creates IG with three examples, to show that binary is not working with TEX
 
 - DocumentReference of a TEXT binary works
 - Binary of a PNG binary works
-- Binary of a TEXT throws an error:
-
-> Binary (l1/c2)	error	Unknown file type helloWorld.txt
-
+- Binary of a TEXT
+  - throws an error: "unknown file type hello-world.txt"
+  - but produces the right artifact
+- Binary of a JSON
+  - throws an error: "unknown file type hello-world.json"
+  - but produces the right artifact
+- Binary of a XML
+  - throws an error: "unknown file type hello-world.xml"
+  - but produces the right artifact
 
 </div>
 <br clear="all">
-
-## Modality Warning
-
-Note: that the new modality element in FHIR R5 DocumentReference will throw a warning if you do not have dependency on the dicom vocabulary. This happens also in ImagingStudy in previous versions. An example of this warning:
-
-> warning	ValueSet http://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_33.html not found by validator
-
-Either add the warning(s) to ignoreWarnings.txt, or add the dependency to the dicom IG to sushi-config.yaml. This IG did both.
-
-```
-dependencies:
-  fhir.dicom:
-    uri: http://fhir.org/packages/fhir.dicom
-    version: 2023.1.20230123
-```
-
 
 - [GitHub repo](https://github.com/JohnMoehrke/testBinary)
 - [ig publisher still fails](https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/ig-loader.20examples)

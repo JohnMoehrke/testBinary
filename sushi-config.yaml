@@ -2,9 +2,9 @@
 # │  The properties below are used to create the ImplementationGuide resource. For a list of       │
 # │  supported properties, see: https://fshschool.org/docs/sushi/configuration/                    │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-id: johnmoehrke.testbinary
-canonical: http://johnmoehrke.github.io/testBinary
-name: TestBinary
+id: johnmoehrke.testbinary.example
+canonical: http://johnmoehrke.github.io/testbinary
+name: JohnMoehrkeTestBinary
 status: draft
 version: 0.1.1-current
 #fhirVersion: 4.0.1
@@ -18,10 +18,6 @@ publisher:
 license: CC-BY-SA-4.0
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 
-dependencies:
-  fhir.dicom:
-    uri: http://fhir.org/packages/fhir.dicom
-    version: 2023.3.20230704
 
 parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
   path-resource:

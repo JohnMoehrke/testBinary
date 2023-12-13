@@ -1,6 +1,10 @@
 == Suppressed Messages ==
 
 # One alternative to ignore this warning
+WARNING: DocumentReference/Dr-hello-world: DocumentReference.modality[0]: ValueSet http://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_33.html not found
 
-The valueSet reference http://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_33.html on element DocumentReference.modality could not be resolved
-ValueSet http://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_33.html not found by validator
+# need to ignore
+INFORMATION: ImplementationGuide/johnmoehrke.testbinary.example: ImplementationGuide.jurisdiction[0]: Reference to deprecated item http://hl7.org/fhir/ValueSet/jurisdiction|5.0.0
+INFORMATION: StructureDefinition/DocumentReferenceFoo: StructureDefinition.jurisdiction[0]: Reference to deprecated item http://hl7.org/fhir/ValueSet/jurisdiction|5.0.0
+
+
