@@ -1,20 +1,28 @@
+// see https://confluence.hl7.org/pages/viewpage.action?pageId=66938614#ImplementationGuideParameters-BinaryAdjunctFiles
 
 Profile:        DocumentReferenceFoo
 Parent:         DocumentReference
 Title:          "Just a simple profile of DocumentReference"
 Description:    "not much to say"
 * status = #current
-* content.attachment.contentType 1..1
+// since DocumentReference ig-loader can't have .contentType specified, then the profile can't require contentType
+//* content.attachment.contentType 1..1
 
 
 Instance: Dr-hello-world
-InstanceOf: DocumentReferenceFoo
+InstanceOf: DocumentReference
 Title: "Binary example using DocumentReference"
 Description: "Example of a hello world binary using DocumentReference."
 * status = #current
 * content.attachment.id = "ig-loader-hello-world.txt"
-//* content.attachment.url = "Binary/B-hello-world"
-* content.attachment.contentType = #text/plain
+// note you can not populate the contentType
+
+Instance: Dr-Ink-profiled
+InstanceOf: DocumentReferenceFoo
+Title: "Binary example using DocumentReferenceFoo profile"
+Description: "Example of a ink binary using a profiled DocumentReference."
+* status = #current
+* content.attachment.id = "ig-loader-ink.png"
 
 
 // binary throws a File Type error that DocumentReference does not

@@ -1,10 +1,11 @@
 # testBundle
 
+This creates IG with binary examples using the [IG Publisher ig-loader BinaryAdjunctFile feature](https://confluence.hl7.org/pages/viewpage.action?pageId=66938614#ImplementationGuideParameters-BinaryAdjunctFiles), to show that binary is not working with TEXT files.
+
 <div markdown="1" class="dragon">
 
-This creates IG with three examples, to show that binary is not working with TEXT files.
-
 - DocumentReference of a TEXT binary works
+  - Note that DocumentReference can not have the contentType populated, although the documentation says it should be.
 - Binary of a PNG binary works
 - Binary of a TEXT
   - throws an error: "unknown file type hello-world.txt"
