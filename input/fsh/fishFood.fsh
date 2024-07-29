@@ -12,10 +12,18 @@ Description:    "not much to say"
 Instance: Dr-hello-world
 InstanceOf: DocumentReference
 Title: "Binary example using DocumentReference"
-Description: "Example of a hello world binary using DocumentReference."
+Description: "Example of a hello world binary using DocumentReference. This will load the binary, but will NOT populate the contentType."
 * status = #current
 * content.attachment.id = "ig-loader-hello-world.txt"
 // note you can not populate the contentType
+
+Instance: Dr-hello-world-not
+InstanceOf: DocumentReference
+Title: "Failed Binary example using DocumentReference"
+Description: "Example of a hello world binary using DocumentReference that fails because contentType is populated. This will result in a DocumentReference that has not been loaded with the attachment, but rather holding in the id field exactly what is in this example."
+* status = #current
+* content.attachment.id = "ig-loader-hello-world.txt"
+* content.attachment.contentType = #text/plain
 
 Instance: Dr-Ink-profiled
 InstanceOf: DocumentReferenceFoo
