@@ -16,7 +16,9 @@ This creates IG with binary examples using the [IG Publisher ig-loader BinaryAdj
 - Binary of a XML
   - throws an error: "unknown file type hello-world.xml"
   - but produces the right artifact
-
+- Document Bundle of a DocumentReference with a url of a web page
+  - throws an info warning: because document bundles must have all References in the Bundle, and .url are treated as References here
+  
 </div>
 <br clear="all">
 

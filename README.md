@@ -15,7 +15,9 @@ This creates IG with three examples, to show that binary is not working with TEX
 - Binary of a XML
   - throws an error: "unknown file type hello-world.xml"
   - but produces the right artifact
-
+- Document Bundle of a DocumentReference with a url of a web page
+  - throws an info warning: because document bundles must have all References in the Bundle, and .url are treated as References here
+  
 - [ig publisher still fails](https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/ig-loader.20examples)
   - [ig publisher issue](https://github.com/HL7/fhir-ig-publisher/issues/355)
 - [chat thread](https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/binary.20resources)
