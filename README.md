@@ -18,6 +18,7 @@ This creates IG with three examples, to show that binary is not working with TEX
   
 
 References:
+- [Documentation on BinaryAdjunctFile](https://build.fhir.org/ig/FHIR/ig-guidance/binaries.html)
 - [GitHub repo](https://github.com/JohnMoehrke/testBinary)
 - [ig publisher still fails](https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/ig-loader.20examples) -- CLOSED
   - [ig publisher issue](https://github.com/HL7/fhir-ig-publisher/issues/355) -- CLOSED

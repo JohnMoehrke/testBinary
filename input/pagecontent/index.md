@@ -1,6 +1,6 @@
 # testBundle
 
-This creates IG with binary examples using the [IG Publisher ig-loader BinaryAdjunctFile feature](https://confluence.hl7.org/pages/viewpage.action?pageId=66938614#ImplementationGuideParameters-BinaryAdjunctFiles), to show that binary is not working with TEXT files.
+This creates IG with binary examples using the [IG Publisher ig-loader BinaryAdjunctFile feature](https://build.fhir.org/ig/FHIR/ig-guidance/binaries.html), to show that binary is not working with TEXT files.
 
 <div markdown="1" class="dragon">
 
@@ -13,12 +13,13 @@ This creates IG with binary examples using the [IG Publisher ig-loader BinaryAdj
 - [Binary of a XML](Binary-x-hello-world.html) works
 - [Binary of a PDF](Binary-p-hello-world.html) works
 - [Document Bundle of a DocumentReference with a url of a web page](Bundle-hello-bundle.html)
-  - **throws an info warning: because document bundles must have all References in the Bundle, and .url are treated as References here**
+  - Note: throws an info warning: because document bundles must have all References in the Bundle, and .url are treated as References here. As an info, it is challenging the author to check their work and ignorewarning if they really mean it.
   
 </div>
 <br clear="all">
 
 References:
+- [Documentation on BinaryAdjunctFile](https://build.fhir.org/ig/FHIR/ig-guidance/binaries.html)
 - [GitHub repo](https://github.com/JohnMoehrke/testBinary)
 - [ig publisher still fails](https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/ig-loader.20examples) -- CLOSED
   - [ig publisher issue](https://github.com/HL7/fhir-ig-publisher/issues/355) -- CLOSED
