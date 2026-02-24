@@ -4,14 +4,15 @@ This creates IG with binary examples using the [IG Publisher ig-loader BinaryAdj
 
 <div markdown="1" class="dragon">
 
-- [DocumentReference of a TEXT data](DocumentReference-Dr-hello-world.html) works
-  - **Note that [DocumentReference can not have the contentType populated](DocumentReference-Dr-hello-world-not.html), although the documentation says it should be.**
-  - [Profiled DocumentReference](DocumentReference-Dr-Ink-profiled.html) works
 - [Binary of a PNG](Binary-B-ink.html) works
 - [Binary of a TEXT](Binary-B-hello-world.html) works
 - [Binary of a JSON](Binary-J-hello-world.html) works
 - [Binary of a XML](Binary-x-hello-world.html) works
 - [Binary of a PDF](Binary-p-hello-world.html) works
+- [DocumentReference of a TEXT data](DocumentReference-Dr-hello-world.html) works
+  - **Note that [DocumentReference can not have the contentType populated](DocumentReference-Dr-hello-world-not.html), although the documentation says it should be.**
+- [Profiled DocumentReference](DocumentReference-Dr-Ink-profiled.html) works
+- [DocumentReference with many content attachments both data and Binary](DocumentReference-all-contents.html) works
 - [Document Bundle of a DocumentReference with a url of a web page](Bundle-hello-bundle.html)
   - Note: throws an info warning: because document bundles must have all References in the Bundle, and .url are treated as References here. As an info, it is challenging the author to check their work and ignorewarning if they really mean it.
   

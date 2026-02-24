@@ -33,6 +33,31 @@ Description: "Example of a DocumentReference data of an ink signature png."
 * content.attachment.id = "ig-loader-ink.png"
 //* content.attachment.contentType = #image/png
 
+Instance: all-contents
+InstanceOf: DocumentReference
+Title: "DocumentReference with many contents"
+Description: "Example DocumentReference with many content of each kind of binary."
+* status = #current
+* content[+].attachment.id = "ig-loader-hello-world.txt"
+//* content[=].attachment.contentType = #text/plain
+* content[+].attachment.id = "ig-loader-ink.png"
+//* content[=].attachment.contentType = #image/png
+* content[+].attachment.id = "ig-loader-hello-world.json"
+//* content[=].attachment.contentType = #application/json
+* content[+].attachment.id = "ig-loader-hello-world.xml"
+//* content[=].attachment.contentType = #application/xml
+* content[+].attachment.id = "ig-loader-hello-world.pdf"
+//* content[=].attachment.contentType = #application/pdf
+* content[+].attachment.url = "Binary/B-hello-world"
+* content[=].attachment.contentType = #text/plain
+* content[+].attachment.url = "Binary/B-ink"
+* content[=].attachment.contentType = #image/png
+* content[+].attachment.url = "Binary/J-hello-world"
+* content[=].attachment.contentType = #application/json
+* content[+].attachment.url = "Binary/x-hello-world"
+* content[=].attachment.contentType = #application/xml
+* content[+].attachment.url = "Binary/p-hello-world"
+* content[=].attachment.contentType = #application/pdf
 
 
 Instance: B-hello-world

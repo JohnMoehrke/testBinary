@@ -14,7 +14,7 @@ This creates IG with three examples, to show that binary is not working with TEX
 - Binary of a XML works
 - Binary of a PDF works
 - Document Bundle of a DocumentReference with a url of a web page
-  - throws an info warning: because document bundles must have all References in the Bundle, and .url are treated as References here
+  - throws an info warning: because document bundles must have all References in the Bundle, and .url are treated as References here. This is good.
   
 
 References:
