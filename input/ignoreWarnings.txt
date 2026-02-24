@@ -1,2 +1,5 @@
 == Suppressed Messages ==
 
+# not a worry
+MSG_DEPRECATED
+MSG_EXPERIMENTAL

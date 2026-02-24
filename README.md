@@ -1,5 +1,7 @@
 # test Binary attachments
 
+GitHub repo: https://github.com/JohnMoehrke/testBinary
+
 CI build - http://build.fhir.org/ig/JohnMoehrke/testBinary/branches/main/index.html
 
 This creates IG with three examples, to show that binary is not working with TEXT files.
@@ -18,6 +20,9 @@ This creates IG with three examples, to show that binary is not working with TEX
 - Document Bundle of a DocumentReference with a url of a web page
   - throws an info warning: because document bundles must have all References in the Bundle, and .url are treated as References here
   
+
+References:
+- [ig-guidance on binary adjunct files](https://build.fhir.org/ig/FHIR/ig-guidance/binaries.html)
 - [ig publisher still fails](https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/ig-loader.20examples)
   - [ig publisher issue](https://github.com/HL7/fhir-ig-publisher/issues/355)
 - [chat thread](https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/binary.20resources)

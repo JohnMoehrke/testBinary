@@ -36,11 +36,11 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
   apply-version: 'true'
   path-binary: input/stuff
 
-resources:
-  Binary/B-hello-world:
-    extension:
-      - url: http://hl7.org/fhir/StructureDefinition/implementationguide-resource-format
-        valueCode: "text/plain"
+#resources:
+#  Binary/B-hello-world:
+#    extension:
+#      - url: http://hl7.org/fhir/StructureDefinition/implementationguide-resource-format
+#        valueCode: "text/plain"
 
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
