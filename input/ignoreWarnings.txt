@@ -3,3 +3,5 @@
 # not a worry
 MSG_DEPRECATED
 MSG_EXPERIMENTAL
+Type_Specific_Checks_DT_URL_Resolve
+Bundle_BUNDLE_Entry_NotFound

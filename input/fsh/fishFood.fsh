@@ -16,20 +16,22 @@ Description: "Example of a hello world binary using DocumentReference. This does
 * status = #current
 * content.attachment.id = "ig-loader-hello-world.txt"
 //* content.attachment.contentType = #text/plain
+
+
+
+Instance: Dr-hello-world-not
+InstanceOf: DocumentReference
+Title: "Failed DocumentReference text file because of populated other elements"
+Description: "Example of a hello world binary using DocumentReference that fails because other attachment elements are populated. This will result in a DocumentReference that has not been loaded with the attachment, but rather holding in the id field exactly what is in this example.  This was initially noticed by populating contentType, but it also happens with any other element of the attachment. This is a bug in the ig-loader that should be fixed, as the documentation says that contentType should be supported, and it is a common element to want to populate."
+* status = #current
+* content.attachment.id = "ig-loader-hello-world.txt"
+* content.attachment.contentType = #text/plain
 * content.attachment.title = "Hello World Text File"
 * content.attachment.creation = "2024-09-01T00:00:00Z"
 * content.attachment.size = 20
 * content.attachment.hash = "SGVsbG8gV29ybGQgVGV4dCBGaWxl" // Base64 for "Hello World Text File"
 * content.attachment.language = #en
 
-
-Instance: Dr-hello-world-not
-InstanceOf: DocumentReference
-Title: "Failed DocumentReference text file because of populated contentType"
-Description: "Example of a hello world binary using DocumentReference that fails because contentType is populated. This will result in a DocumentReference that has not been loaded with the attachment, but rather holding in the id field exactly what is in this example."
-* status = #current
-* content.attachment.id = "ig-loader-hello-world.txt"
-* content.attachment.contentType = #text/plain
 
 Instance: Dr-Ink-profiled
 InstanceOf: DocumentReferenceFoo
