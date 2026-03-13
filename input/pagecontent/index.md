@@ -29,3 +29,4 @@ References:
 - [sushi binary adjunct chat thread](https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/Binary.20Adjunct)
   - with resolved [sushi bug](https://github.com/FHIR/sushi/issues/1005)
 - [DocumentReference contentType can not be populated](https://github.com/HL7/fhir-ig-publisher/issues/1257) -- WRONGLY CLOSED, as it still happens.
+- [ig-loader does not allow any attachment elements](https://github.com/HL7/fhir-ig-publisher/issues/1272)
