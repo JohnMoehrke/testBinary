@@ -16,6 +16,12 @@ Description: "Example of a hello world binary using DocumentReference. This does
 * status = #current
 * content.attachment.id = "ig-loader-hello-world.txt"
 //* content.attachment.contentType = #text/plain
+* content.attachment.title = "Hello World Text File"
+* content.attachment.creation = "2024-09-01T00:00:00Z"
+* content.attachment.size = 20
+* content.attachment.hash = "SGVsbG8gV29ybGQgVGV4dCBGaWxl" // Base64 for "Hello World Text File"
+* content.attachment.language = #en
+
 
 Instance: Dr-hello-world-not
 InstanceOf: DocumentReference
