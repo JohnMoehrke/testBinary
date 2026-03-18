@@ -2,8 +2,8 @@
 You can also download:
 
 - [this entire guide](full-ig.zip),
-- the definition resources in [json](definitions.json.zip), [xml](definitions.xml.zip) format, or
-- the example resources in [json](examples.json.zip), [xml](examples.xml.zip) format.
+- the definition resources in [json](../definitions.json.zip), [xml](../definitions.xml.zip) format, or
+- the example resources in [json](../examples.json.zip), [xml](../examples.xml.zip) format.
 
 The source code for this Implementation Guide can be found on [Github Repo](https://github.com/JohnMoehrke/testBinary)
 
