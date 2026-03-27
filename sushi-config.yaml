@@ -6,7 +6,7 @@ id: johnmoehrke.testbinary.example
 canonical: http://johnmoehrke.github.io/testbinary
 name: JohnMoehrkeTestBinary
 status: draft
-version: 0.1.1-current
+version: 0.1.2-current
 #fhirVersion: 4.0.1
 fhirVersion: 5.0.0
 copyrightYear: 2021+

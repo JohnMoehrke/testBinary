@@ -1,7 +1,7 @@
 ﻿{
 	"name": "moehrke.research.template",
 	"type": "fhir.template",
-	"license": "CC-BY-1.0",
+	"license": "CC-BY-4.0",
 	"description": "Moehrke Research IG Template",
 	"author": "http://johnmoehrke.github.io/",
 	"version": "current",

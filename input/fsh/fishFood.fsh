@@ -3,7 +3,7 @@
 Profile:        DocumentReferenceFoo
 Parent:         DocumentReference
 Title:          "Just a simple profile of DocumentReference"
-Description:    "not much to say"
+Description:    "Profile on DocumentReference. FAIL: since DocumentReference ig-loader can't have .contentType specified, then the profile can't require contentType"
 * status = #current
 // since DocumentReference ig-loader can't have .contentType specified, then the profile can't require contentType
 //* content.attachment.contentType 1..1
@@ -12,17 +12,33 @@ Description:    "not much to say"
 Instance: Dr-hello-world
 InstanceOf: DocumentReference
 Title: "DocumentReference text file data"
-Description: "Example of a hello world binary using DocumentReference. This does not have the contentType specified, and it will be filled by ig-loader based on the file extension."
+Description: "Example of a hello world text file using DocumentReference. This does not have the contentType specified, and it will be filled by ig-loader based on the file extension."
 * status = #current
 * content.attachment.id = "ig-loader-hello-world.txt"
 //* content.attachment.contentType = #text/plain
+
+Instance: Dr-hello-world-mime
+InstanceOf: DocumentReference
+Title: "FAIL DocumentReference text file data with contentType specified"
+Description: "FAIL: Example of a hello world text file using DocumentReference. This does have the contentType specified."
+* status = #current
+* content.attachment.id = "ig-loader-hello-world.txt"
+* content.attachment.contentType = #text/plain
+
+Instance: Dr-hello-world-markdown
+InstanceOf: DocumentReference
+Title: "FAIL DocumentReference markdown txt file data"
+Description: "Example of a hello world markdown text file using DocumentReference. This does have the contentType specified, as the content is more than just plain text. FAIL: It will not be filled by ig-loader based on the file extension."
+* status = #current
+* content.attachment.id = "ig-loader-hello-world.txt"
+* content.attachment.contentType = #text/markdown
 
 
 
 Instance: Dr-hello-world-not
 InstanceOf: DocumentReference
-Title: "Failed DocumentReference text file because of populated other elements"
-Description: "Example of a hello world binary using DocumentReference that fails because other attachment elements are populated. This will result in a DocumentReference that has not been loaded with the attachment, but rather holding in the id field exactly what is in this example.  This was initially noticed by populating contentType, but it also happens with any other element of the attachment. This is a bug in the ig-loader that should be fixed, as the documentation says that contentType should be supported, and it is a common element to want to populate."
+Title: "FAIL DocumentReference text file because of populated other elements"
+Description: "FAIL: Example of a hello world text file using DocumentReference that fails because other attachment elements are populated. This will result in a DocumentReference that has not been loaded with the attachment, but rather holding in the id field exactly what is in this example.  This was initially noticed by populating contentType, but it also happens with any other element of the attachment. This is a bug in the ig-loader that should be fixed, as the documentation says that contentType should be supported, and it is a common element to want to populate."
 * status = #current
 * content.attachment.id = "ig-loader-hello-world.txt"
 * content.attachment.contentType = #text/plain
@@ -35,27 +51,27 @@ Description: "Example of a hello world binary using DocumentReference that fails
 
 Instance: Dr-Ink-profiled
 InstanceOf: DocumentReferenceFoo
-Title: "DocumentReferenceFoo example using Ink binary"
-Description: "Example of a DocumentReference data of an ink signature png."
+Title: "FAIL: DocumentReferenceFoo example using Ink binary"
+Description: "FAIL: Example of a DocumentReference data of an ink signature png."
 * status = #current
 * content.attachment.id = "ig-loader-ink.png"
-//* content.attachment.contentType = #image/png
+* content.attachment.contentType = #image/png
 
 Instance: all-contents
 InstanceOf: DocumentReference
 Title: "DocumentReference with many contents"
-Description: "Example DocumentReference with many content of each kind of binary."
+Description: "Example DocumentReference with many content of each kind of binary. This will FAIL on the attachment.id ig-loader as they have contentType. The attachment.url to a Binary will work."
 * status = #current
 * content[+].attachment.id = "ig-loader-hello-world.txt"
-//* content[=].attachment.contentType = #text/plain
+* content[=].attachment.contentType = #text/plain
 * content[+].attachment.id = "ig-loader-ink.png"
-//* content[=].attachment.contentType = #image/png
+* content[=].attachment.contentType = #image/png
 * content[+].attachment.id = "ig-loader-hello-world.json"
-//* content[=].attachment.contentType = #application/json
+* content[=].attachment.contentType = #application/json
 * content[+].attachment.id = "ig-loader-hello-world.xml"
-//* content[=].attachment.contentType = #application/xml
+* content[=].attachment.contentType = #application/xml
 * content[+].attachment.id = "ig-loader-hello-world.pdf"
-//* content[=].attachment.contentType = #application/pdf
+* content[=].attachment.contentType = #application/pdf
 * content[+].attachment.url = "Binary/B-hello-world"
 * content[=].attachment.contentType = #text/plain
 * content[+].attachment.url = "Binary/B-ink"
@@ -71,15 +87,22 @@ Description: "Example DocumentReference with many content of each kind of binary
 Instance: B-hello-world
 InstanceOf: Binary
 Title: "Binary example using Binary of text"
-Description: "Example of a binary hello world using Binary."
+Description: "Example of a text hello world using Binary."
 * contentType = #text/plain
+* data = "ig-loader-hello-world.txt"
+
+Instance: B-hello-world-markdown
+InstanceOf: Binary
+Title: "FAIL Binary example using Binary of text markdown"
+Description: "FAIL: Example of a markdown hello world using Binary. The contentType is specified as markdown but ignored. The contentType is important as we want the more specific mime-type."
+* contentType = #text/markdown
 * data = "ig-loader-hello-world.txt"
 
 
 Instance: B-ink
 InstanceOf: Binary
 Title: "Binary example using Binary of png"
-Description: "Example of a binary ink signature using Binary."
+Description: "Example of a png ink signature using Binary."
 * contentType = #image/png
 * data = "ig-loader-ink.png"
 
@@ -90,11 +113,25 @@ Description: "Example of a json hello world using Binary."
 * contentType = #application/json
 * data = "ig-loader-hello-world.json"
 
+Instance: J-hello-world-mime
+InstanceOf: Binary
+Title: "FAIL Binary example using Binary of json"
+Description: "FAIL: Example of a json hello world using Binary. The contentType is ignored, but is important as we want the more specific mime-type."
+* contentType = #application/fhir+json
+* data = "ig-loader-hello-world.json"
+
 Instance: x-hello-world
 InstanceOf: Binary
 Title: "Binary example using Binary of xml"
 Description: "Example of a xml hello world using Binary."
 * contentType = #application/xml
+* data = "ig-loader-hello-world.xml"
+
+Instance: x-hello-world-mime
+InstanceOf: Binary
+Title: "FAIL Binary example using Binary of xml"
+Description: "FAIL: Example of a xml hello world using Binary. The contentType is ignored, but is important as we want the more specific mime-type."
+* contentType = #application/fhir+xml
 * data = "ig-loader-hello-world.xml"
 
 Instance: p-hello-world
