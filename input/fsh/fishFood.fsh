@@ -201,3 +201,20 @@ Description: "A bundle containing various Binary and DocumentReference examples.
 * entry[+].resource = ad-patient-123
 * entry[=].fullUrl = "https://fhir.example.com/Patient/ad-patient-123"
 
+Profile: MediaFoo
+Parent: Media
+Title: "Just a simple profile of Media"
+Description: "Profile on Media. FAIL: since Media ig-loader can't have .contentType specified, then the profile can't require contentType"
+* status = #completed
+
+Instance: Media-hello-world
+InstanceOf: MediaFoo
+Title: "Media example using Media of text"
+Description: "Example of a hello world text file using Media. This does not have the content
+Type specified, and it will be filled by ig-loader based on the file extension."
+* status = #completed
+* content.contentType = #text/plain
+* content.title = "Hello World PDF Link"
+* content.creation = "2024-09-01T00:00:00Z"
+* content.url = "https://server.example.com/blah.pdf"
+* content.language = #en

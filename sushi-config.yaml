@@ -7,8 +7,8 @@ canonical: http://johnmoehrke.github.io/testbinary
 name: JohnMoehrkeTestBinary
 status: draft
 version: 0.1.2-current
-#fhirVersion: 4.0.1
-fhirVersion: 5.0.0
+fhirVersion: 4.0.1
+#fhirVersion: 5.0.0
 copyrightYear: 2021+
 releaseLabel: ci-build
 publisher:
