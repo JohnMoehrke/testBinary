@@ -38,6 +38,14 @@ ig-loader does not fully work.
 - [Profile of DocumentReference that should have contentType required](StructureDefinition-DocumentReferenceFoo.html) 
 - [Profiled DocumentReference](DocumentReference-Dr-Ink-profiled.html) works
 
+### Media example
+
+Note that Media is removed from FHIR in R5. So it only exists in R4. Thus recommendation is to use DocumentReference in R4.
+
+- [Profile on Media](StructureDefinition-MediaFoo.html)
+- [Media example](Media-Media-hello-world.html)
+- [Media using ig-loader](Media-Media-Ink-profiled.html)
+
 ### Bundle warning when it includes a DocumentReference with a url
 
 <div markdown="1" class="dragon">

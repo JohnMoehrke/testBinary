@@ -3,7 +3,7 @@
 Profile:        DocumentReferenceFoo
 Parent:         DocumentReference
 Title:          "Just a simple profile of DocumentReference"
-Description:    "Profile on DocumentReference. FAIL: since DocumentReference ig-loader can't have .contentType specified, then the profile can't require contentType"
+Description:    "Profile on DocumentReference. Note: since DocumentReference ig-loader can't have .contentType specified, then the profile can't require contentType"
 * status = #current
 // since DocumentReference ig-loader can't have .contentType specified, then the profile can't require contentType
 //* content.attachment.contentType 1..1
@@ -204,7 +204,7 @@ Description: "A bundle containing various Binary and DocumentReference examples.
 Profile: MediaFoo
 Parent: Media
 Title: "Just a simple profile of Media"
-Description: "Profile on Media. FAIL: since Media ig-loader can't have .contentType specified, then the profile can't require contentType"
+Description: "Profile on Media. Note: since Media ig-loader can't have .contentType specified, then the profile can't require contentType"
 * status = #completed
 
 Instance: Media-hello-world
@@ -218,3 +218,11 @@ Type specified, and it will be filled by ig-loader based on the file extension."
 * content.creation = "2024-09-01T00:00:00Z"
 * content.url = "https://server.example.com/blah.pdf"
 * content.language = #en
+
+Instance: Media-Ink-profiled
+InstanceOf: MediaFoo
+Title: "MediaFoo example using Ink binary"
+Description: "Example of a Media data of an ink signature png. Note: since Media ig-loader can't have .contentType specified, then the contentType is not specified here, but it will be filled by ig-loader based on the file extension."
+* status = #completed
+* content.id = "ig-loader-ink.png"
+
