@@ -15,7 +15,7 @@ Title: "DocumentReference text file data"
 Description: "Example of a hello world text file using DocumentReference. This does not have the contentType specified, and it will be filled by ig-loader based on the file extension."
 * status = #current
 * content.attachment.id = "ig-loader-hello-world.txt"
-//* content.attachment.contentType = #text/plain
+* content.attachment.contentType = #text/plain
 
 Instance: Dr-hello-world-mime
 InstanceOf: DocumentReference
@@ -225,4 +225,24 @@ Title: "MediaFoo example using Ink binary"
 Description: "Example of a Media data of an ink signature png. Note: since Media ig-loader can't have .contentType specified, then the contentType is not specified here, but it will be filled by ig-loader based on the file extension."
 * status = #completed
 * content.id = "ig-loader-ink.png"
+* content.contentType = #image/png
+
+Instance: InlineData
+InstanceOf: DocumentReference
+Title: "Inline Data Example"
+Description: "Example of a DocumentReference with inline data."
+Usage: #inline
+* status = #current
+* content.attachment.contentType = #text/markdown
+* content.attachment.data = "SGVsbG8gd29ybGQh" // Base64 encoded "Hello world!"
+
+Instance: ProvenanceWithInlineData
+InstanceOf: Provenance
+Title: "Provenance with Inline Data Example"
+Description: "Example of a Provenance resource referencing a DocumentReference with inline data."
+* target[0] = Reference(InlineData)
+* recorded = "2024-09-21T18:53:00.8116604+00:00"
+* contained[+] = InlineData
+* agent[+].type = #author
+* agent[=].who.reference = "http://example.com/Practitioner/123"
 

@@ -35,6 +35,7 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
   apply-publisher: 'true'
   apply-version: 'true'
   path-binary: input/stuff
+  auto-oid-root: 1.3.6.1.4.1.66281.8
 
 #resources:
 #  Binary/B-hello-world:

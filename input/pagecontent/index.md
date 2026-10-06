@@ -1,4 +1,3 @@
-# testBundle
 
 This creates IG with binary examples using the [IG Publisher ig-loader BinaryAdjunctFile feature](https://build.fhir.org/ig/FHIR/ig-guidance/binaries.html).
 
