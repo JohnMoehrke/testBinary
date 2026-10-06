@@ -227,6 +227,14 @@ Description: "Example of a Media data of an ink signature png. Note: since Media
 * content.id = "ig-loader-ink.png"
 * content.contentType = #image/png
 
+Instance: Practitioner-123
+InstanceOf: Practitioner
+Title: "Practitioner Example"
+Description: "Example of a Practitioner resource."
+* id = "123"
+* name[0].family = "Doe"
+* name[0].given[0] = "John"
+
 Instance: InlineData
 InstanceOf: DocumentReference
 Title: "Inline Data Example"
@@ -243,6 +251,24 @@ Description: "Example of a Provenance resource referencing a DocumentReference w
 * target[0] = Reference(InlineData)
 * recorded = "2024-09-21T18:53:00.8116604+00:00"
 * contained[+] = InlineData
-* agent[+].type = #author
-* agent[=].who.reference = "http://example.com/Practitioner/123"
+* agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author
+* agent[=].who = Reference(Practitioner-123)
 
+Instance: LinkToData
+InstanceOf: DocumentReference
+Title: "Link to Data Example"
+Description: "Example of a DocumentReference linking to external data."
+Usage: #inline
+* status = #current
+* content.attachment.contentType = #text/markdown
+* content.attachment.url = "https://server.example.com/blah.md"
+
+Instance: ProvenanceWithInlineDataLink
+InstanceOf: Provenance
+Title: "Provenance with Inline Data Link Example"
+Description: "Example of a Provenance resource referencing a DocumentReference linking to external data."
+* target[0] = Reference(LinkToData)
+* recorded = "2024-09-21T18:53:00.8116604+00:00"
+* contained[+] = LinkToData
+* agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author
+* agent[=].who = Reference(Practitioner-123)
