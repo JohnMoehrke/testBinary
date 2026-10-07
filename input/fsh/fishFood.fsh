@@ -272,3 +272,35 @@ Description: "Example of a Provenance resource referencing a DocumentReference l
 * contained[+] = LinkToData
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author
 * agent[=].who = Reference(Practitioner-123)
+
+Instance: Patient456
+InstanceOf: Patient
+Title: "Patient Example"
+Description: "Example of a Patient resource."
+* id = "456"
+* name[0].family = "Smith"
+* name[0].given[0] = "Jane"
+
+Instance: ObservationWithInlineData
+InstanceOf: Observation
+Title: "Observation with Inline Data Example"
+Description: "Example of an Observation resource referencing a DocumentReference with inline data."
+* subject = Reference(Patient456)
+* derivedFrom[0] = Reference(InlineData)
+* contained[+] = InlineData
+* status = #final
+* code.coding = http://loinc.org#718-7
+* valueQuantity.value = 13.5
+* valueQuantity.unit = #g/dL
+* valueQuantity.system = "http://unitsofmeasure.org"
+* valueQuantity.code = #g/dL
+
+Instance: ProvenanceWithInlinePractitioner
+InstanceOf: Provenance
+Title: "Provenance with Inline Practitioner Example"
+Description: "Example of a Provenance resource referencing a Practitioner with inline data."
+* target[0] = Reference(ObservationWithInlineData)
+* recorded = "2024-09-21T18:53:00.8116604+00:00"
+* contained[+] = Practitioner-123
+* agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author
+* agent[=].who = Reference(Practitioner-123)
