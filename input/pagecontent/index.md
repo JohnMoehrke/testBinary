@@ -22,12 +22,12 @@ The results below were checked in the generated resource JSON with IG Publisher 
 
 ### Binary examples:
 
-- [Binary of a PNG](Binary-B-ink.html) works
-- [Binary of a TEXT](Binary-B-hello-world.html) works
-- [Binary of a JSON](Binary-J-hello-world.html) works
-- [Binary of a XML](Binary-x-hello-world.html) works
-- [Binary of a PDF](Binary-p-hello-world.html) works
-- [Binary of CQL](Binary-C-hello-world.html) works with `text/cql`
+- [Binary of a PNG](Binary-B-ink.html): **PASS**, embeds the ink signature with `image/png`
+- [Binary of TEXT](Binary-B-hello-world.html): **PASS**, embeds the hello world text with `text/plain`
+- [Binary of JSON](Binary-J-hello-world.html): **PASS**, embeds the JSON file with `application/json`
+- [Binary of XML](Binary-x-hello-world.html): **PASS**, embeds the XML file with `application/xml`
+- [Binary of PDF](Binary-p-hello-world.html): **PASS**, embeds the PDF file with `application/pdf`
+- [Binary of CQL](Binary-C-hello-world.html): **PASS**, embeds the FHIR R4 CQL source with `text/cql`
 - **Binary does not fully work with specified contentType, as the contentType is ignored, and the file extension is used to determine the contentType instead.**
   - [Binary of a TEXT MARKDOWN with contentType specified](Binary-B-hello-world-markdown.html): **PARTIAL**, data loads but is marked as text/plain instead of text/markdown
   - [Binary of a XML with fhir contentType specified](Binary-x-hello-world-mime.html): **PARTIAL**, data loads but is marked as application/xml instead of application/fhir+xml
@@ -43,7 +43,7 @@ The results below were checked in the generated resource JSON with IG Publisher 
 - **Populating contentType does not cause ig-loader to load these DocumentReference attachments. Omitting it also fails in this build.**
   - [Another DocumentReference of TEXT with contentType](DocumentReference-Dr-hello-world-mime.html): **FAIL**, the loader ID remains, with no data
   - [DocumentReference of a markdown txt file](DocumentReference-Dr-hello-world-markdown.html): **FAIL**, the loader ID remains, with no data
-  - [DocumentReference with other attachment metadata](DocumentReference-Dr-hello-world-not.html): **FAIL**, the loader ID remains, with no data
+  - [DocumentReference with other attachment metadata](DocumentReference-Dr-hello-world-not.html): **FAIL**, the loader ID remains, with no data. The supplied title `Hello World Text File` is preserved; title preservation does not indicate successful loading, and this example does not isolate title from the other metadata.
 
 - [DocumentReference with many content attachments both data and Binary](DocumentReference-all-contents.html): **MIXED**, all six file-loaded attachments (TEXT, PNG, JSON, XML, PDF, CQL) retain their `ig-loader-...` IDs without data. All six Binary URL links point to populated Binary resources; those links do not use attachment ig-loader processing.
 
@@ -52,33 +52,50 @@ The CQL examples use the same `hello-world.cql` source library with `using FHIR 
 ### Profiling DocumentReference
 
 **The intended test is whether a profile can require contentType while using ig-loader. In this build, neither the profiled example with contentType nor the unprofiled examples omitting it successfully load their attachments. Relaxing the profile therefore does not demonstrate a working workaround.**
-- [Profile of DocumentReference that should have contentType required](StructureDefinition-DocumentReferenceFoo.html) 
+- [DocumentReferenceFoo profile](StructureDefinition-DocumentReferenceFoo.html): fixes status to `current`; the proposed requirement for attachment contentType is commented out, so contentType is not currently required by this profile
 - [Profiled DocumentReference](DocumentReference-Dr-Ink-profiled.html): **FAIL**, `content.attachment.id` retains `ig-loader-ink.png`, with no data
 
 ### Media example
 
 Note that Media is removed from FHIR in R5. So it only exists in R4. Thus recommendation is to use DocumentReference in R4.
 
-- [Profile on Media](StructureDefinition-MediaFoo.html)
-- [Media example](Media-Media-hello-world.html): **LINK ONLY**, uses an external URL, not ig-loader
+- [MediaFoo profile](StructureDefinition-MediaFoo.html): fixes status to `completed`; does not require contentType
+- [Media example](Media-Media-hello-world.html): **LINK ONLY**, uses an external URL, not ig-loader. The title `Hello World PDF Link` is preserved; the specified `text/plain` does not match the URL's `.pdf` extension.
 - [Media using ig-loader](Media-Media-Ink-profiled.html): **FAIL**, `content.id` retains `ig-loader-ink.png`, with no data
 
-### Bundle warning when it includes a DocumentReference with a url
+### Document Bundle and its inline resources
 
-<div markdown="1" class="dragon">
+These inline instances are embedded as Bundle entries, not published as standalone example pages. Their links below open the Bundle JSON, where each resource can be inspected by its ID.
 
-**Fail: Bundle of a Bundle with a DocumentReference**
+- [Document Bundle](Bundle-hello-bundle.html): contains a Composition, DocumentReference, and Patient. **LINK ONLY**, the attachment uses an external URL, not ig-loader. The Publisher reports an informational warning about that URL not being included in the document Bundle; this is separate from attachment loading failure.
+- [ad-composition-123 (Composition entry)](Bundle-hello-bundle.json): the first entry describes the advance directive, references the patient, and includes a section pointing to the DocumentReference. The Composition title is `Advance Directive Document` and the section title is `Advance Directive`.
+- [advance-directive-123 (DocumentReference entry)](Bundle-hello-bundle.json): links to the external PDF; the supplied attachment title `Advance Directive Document` is preserved.
+- [ad-patient-123 (Patient entry)](Bundle-hello-bundle.json): John Doe, the subject shared by the Composition and DocumentReference.
 
-- [Document Bundle of a DocumentReference with a url of a web page](Bundle-hello-bundle.html)
-  - Fail: throws an info warning: because document bundles must have all References in the Bundle, and .url are treated as References here. As an info, it is challenging the author to check their work and ignorewarning if they really mean it.
-  
-</div>
-<br clear="all">
+### Explicit data, contained resources, and Provenance
+
+These examples test explicit base64 data and resource references, not ig-loader. The presence of embedded data here therefore does not demonstrate successful file loading. Inline instances have no standalone page; their links open the containing resource's JSON. Broken generated narrative links are noted separately from the resource reference and attachment data results.
+
+- [ExampleData (standalone DocumentReference)](DocumentReference-ExampleData.html): contains explicitly supplied base64 data for `Hello world!` with contentType `text/markdown`; no loader marker is used.
+- [InlineData (contained DocumentReference)](Provenance-ProvenanceWithInlineData.json): contains the same explicitly supplied markdown data. It is embedded in both ProvenanceWithInlineData and ObservationWithInlineData, rather than published independently.
+- [LinkToData (contained DocumentReference)](Provenance-ProvenanceWithInlineDataLink.json): **LINK ONLY**, points to an external markdown URL with `text/markdown`; no file data is embedded.
+- [ProvenanceWithInlineData](Provenance-ProvenanceWithInlineData.html): contains InlineData and targets it using `#InlineData`; its author points to Practitioner/123. The resource contains the attachment data, but QA reports a broken generated narrative hyperlink to the contained DocumentReference.
+- [ProvenanceWithExampleData](Provenance-ProvenanceWithExampleData.html): targets the standalone DocumentReference/ExampleData and records Practitioner/123 as author; the DocumentReference is referenced, not contained.
+- [ProvenanceWithInlineDataLink](Provenance-ProvenanceWithInlineDataLink.html): contains LinkToData and targets it using `#LinkToData`; its author points to Practitioner/123. QA reports a broken generated narrative hyperlink to the contained DocumentReference; the external attachment URL is preserved.
+- [ObservationWithInlineData](Observation-ObservationWithInlineData.html): a final hemoglobin observation of 13.5 g/dL for Patient/456; contains InlineData and references it through `derivedFrom`. QA recommends adding a performer and an effective time; those recommendations are unrelated to attachment loading.
+- [ProvenanceWithInlinePractitioner](Provenance-ProvenanceWithInlinePractitioner.html): targets Observation/ObservationWithInlineData and contains its author Practitioner, referenced as `#123`. QA reports a broken generated narrative hyperlink to the contained Practitioner.
+
+### Supporting patient and practitioner
+
+- [Patient456 (published as Patient/456)](Patient-456.html): Jane Smith, the subject of ObservationWithInlineData; no attachment or ig-loader test.
+- [Practitioner-123 (published as Practitioner/123)](Practitioner-123.html): John Doe, the author referenced by the Provenance examples; no attachment or ig-loader test. The same instance is also [contained in ProvenanceWithInlinePractitioner](Provenance-ProvenanceWithInlinePractitioner.json), where its local reference is `#123`.
 
 ### References:
 
 - [Documentation on BinaryAdjunctFile](https://build.fhir.org/ig/FHIR/ig-guidance/binaries.html)
 - [GitHub repo](https://github.com/JohnMoehrke/testBinary)
+- [ig publisher is not handling DocumentReference right](https://chat.fhir.org/#narrow/channel/179252-IG-creation/topic/DocumentReference.20ig-loader.20is.20broken/with/634072838)
+  - https://github.com/HL7/fhir-ig-publisher/pull/1420
 - [ig publisher still fails](https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/ig-loader.20examples) -- CLOSED
   - [ig publisher issue](https://github.com/HL7/fhir-ig-publisher/issues/355) -- CLOSED
 - [chat thread](https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/binary.20resources)
