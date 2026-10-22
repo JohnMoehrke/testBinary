@@ -17,6 +17,14 @@ Description: "Example of a hello world text file using DocumentReference. This d
 * content.attachment.id = "ig-loader-hello-world.txt"
 * content.attachment.contentType = #text/plain
 
+Instance: Dr-hello-world-no-contentType
+InstanceOf: DocumentReference
+Title: "DocumentReference text file data"
+Description: "Example of a hello world text file using DocumentReference. This does not have the contentType specified, and it will be filled by ig-loader based on the file extension."
+* status = #current
+* content.attachment.id = "ig-loader-hello-world.txt"
+//* content.attachment.contentType = #text/plain
+
 Instance: Dr-hello-world-mime
 InstanceOf: DocumentReference
 Title: "FAIL DocumentReference text file data with contentType specified"
@@ -49,6 +57,29 @@ Description: "FAIL: Example of a hello world text file using DocumentReference t
 * content.attachment.language = #en
 
 
+Instance: Dr-hello-world-cql-no-contentType
+InstanceOf: DocumentReference
+Title: "DocumentReference CQL file data without contentType"
+Description: "Example of a FHIR R4 CQL source file using DocumentReference. The contentType is omitted to test ig-loader inference from the .cql file extension."
+* status = #current
+* content.attachment.id = "ig-loader-hello-world.cql"
+
+Instance: Dr-hello-world-cql
+InstanceOf: DocumentReference
+Title: "DocumentReference CQL file data with contentType"
+Description: "Example of a FHIR R4 CQL source file using DocumentReference with text/cql specified. This tests whether ig-loader loads the attachment and preserves its contentType."
+* status = #current
+* content.attachment.id = "ig-loader-hello-world.cql"
+* content.attachment.contentType = #text/cql
+
+Instance: Dr-hello-world-cql-binary
+InstanceOf: DocumentReference
+Title: "DocumentReference linking to a CQL Binary"
+Description: "Example of a DocumentReference linking to a Binary containing FHIR R4 CQL source with contentType text/cql."
+* status = #current
+* content.attachment.url = "Binary/C-hello-world"
+* content.attachment.contentType = #text/cql
+
 Instance: Dr-Ink-profiled
 InstanceOf: DocumentReferenceFoo
 Title: "FAIL: DocumentReferenceFoo example using Ink binary"
@@ -72,6 +103,8 @@ Description: "Example DocumentReference with many content of each kind of binary
 * content[=].attachment.contentType = #application/xml
 * content[+].attachment.id = "ig-loader-hello-world.pdf"
 * content[=].attachment.contentType = #application/pdf
+* content[+].attachment.id = "ig-loader-hello-world.cql"
+* content[=].attachment.contentType = #text/cql
 * content[+].attachment.url = "Binary/B-hello-world"
 * content[=].attachment.contentType = #text/plain
 * content[+].attachment.url = "Binary/B-ink"
@@ -82,6 +115,8 @@ Description: "Example DocumentReference with many content of each kind of binary
 * content[=].attachment.contentType = #application/xml
 * content[+].attachment.url = "Binary/p-hello-world"
 * content[=].attachment.contentType = #application/pdf
+* content[+].attachment.url = "Binary/C-hello-world"
+* content[=].attachment.contentType = #text/cql
 
 
 Instance: B-hello-world
@@ -140,6 +175,24 @@ Title: "Binary example using Binary of pdf"
 Description: "Example of a pdf hello world using Binary."
 * contentType = #application/pdf
 * data = "ig-loader-hello-world.pdf"
+
+Instance: C-hello-world
+InstanceOf: Binary
+Title: "Binary example using Binary of CQL"
+Description: "Example of a FHIR R4 CQL source file using Binary with contentType text/cql. This tests whether ig-loader recognizes the .cql extension and preserves the specified contentType."
+* contentType = #text/cql
+* data = "ig-loader-hello-world.cql"
+
+Instance: HelloWorld
+InstanceOf: Library
+Title: "Hello World FHIR CQL library"
+Description: "Library associating the hello-world.cql source with the IG Publisher CQL translator."
+* url = "http://johnmoehrke.github.io/testbinary/Library/HelloWorld"
+* version = "1.0.0"
+* name = "HelloWorld"
+* status = #draft
+* type = http://terminology.hl7.org/CodeSystem/library-type#logic-library
+* content.id = "ig-loader-hello-world.cql"
 
 // The advance directive example uses a web url for the attachment, and is included in a FHIR Document Bundle; therefore the document bundle requirements to include all References in the bundle throws an Info warning indicating that the attachment url is not included in the Bundle. This warning is proper, but not easy to understand.
 
@@ -251,6 +304,24 @@ Description: "Example of a Provenance resource referencing a DocumentReference w
 * target[0] = Reference(InlineData)
 * recorded = "2024-09-21T18:53:00.8116604+00:00"
 * contained[+] = InlineData
+* agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author
+* agent[=].who = Reference(Practitioner-123)
+
+Instance: ExampleData
+InstanceOf: DocumentReference
+Title: "Example Data Example"
+Description: "Example of a DocumentReference with inline data."
+Usage: #example
+* status = #current
+* content.attachment.contentType = #text/markdown
+* content.attachment.data = "SGVsbG8gd29ybGQh" // Base64 encoded "Hello world!"
+
+Instance: ProvenanceWithExampleData
+InstanceOf: Provenance
+Title: "Provenance with Example Data Example"
+Description: "Example of a Provenance resource referencing a DocumentReference with inline data."
+* target[0] = Reference(ExampleData)
+* recorded = "2024-09-21T18:53:00.8116604+00:00"
 * agent[+].type = http://terminology.hl7.org/CodeSystem/provenance-participant-type#author
 * agent[=].who = Reference(Practitioner-123)
 

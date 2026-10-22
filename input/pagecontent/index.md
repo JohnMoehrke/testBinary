@@ -10,6 +10,16 @@ ig-loader does not fully work.
 </div>
 <br clear="all">
 
+### How to interpret the results
+
+The results below were checked in the generated resource JSON with IG Publisher 3.0.1. Generating an HTML example page does **not** mean ig-loader successfully loaded its file.
+
+- **PASS (attachment loading):** the `ig-loader-...` marker in `Attachment.id` is removed and the file is embedded as base64 in `Attachment.data`.
+- **FAIL (attachment loading):** `Attachment.id` still contains `ig-loader-...` and no file data is embedded. This occurs in the DocumentReference and Media ig-loader examples below.
+- **PASS (Binary loading):** the marker in `Binary.data` is replaced by base64 file data. The resource's own `Binary.id` is not a loader marker and is expected to remain.
+- **PARTIAL (Binary contentType):** file data loads, but the requested contentType is replaced by the type inferred from the file extension.
+- **LINK ONLY:** an attachment URL points to a Binary or external resource; the attachment itself does not use ig-loader. A Binary link works here when its target Binary has loaded data.
+
 ### Binary examples:
 
 - [Binary of a PNG](Binary-B-ink.html) works
@@ -17,33 +27,41 @@ ig-loader does not fully work.
 - [Binary of a JSON](Binary-J-hello-world.html) works
 - [Binary of a XML](Binary-x-hello-world.html) works
 - [Binary of a PDF](Binary-p-hello-world.html) works
+- [Binary of CQL](Binary-C-hello-world.html) works with `text/cql`
 - **Binary does not fully work with specified contentType, as the contentType is ignored, and the file extension is used to determine the contentType instead.**
-  - [Binary of a TEXT MARKDOWN with contentType specified](Binary-B-hello-world-markdown.html) fails, is marked as text/plain instead of text/markdown
-  - [Binary of a XML with fhir contentType specified](Binary-x-hello-world-mime.html) fails as it is marked as application/xml instead of application/fhir+xml
-  - [Binary of a JSON with fhir contentType specified](Binary-J-hello-world-mime.html) fails as it is marked as application/json instead of application/fhir+json
+  - [Binary of a TEXT MARKDOWN with contentType specified](Binary-B-hello-world-markdown.html): **PARTIAL**, data loads but is marked as text/plain instead of text/markdown
+  - [Binary of a XML with fhir contentType specified](Binary-x-hello-world-mime.html): **PARTIAL**, data loads but is marked as application/xml instead of application/fhir+xml
+  - [Binary of a JSON with fhir contentType specified](Binary-J-hello-world-mime.html): **PARTIAL**, data loads but is marked as application/json instead of application/fhir+json
 
 ### DocumentReference examples:
 
-- [DocumentReference of a TEXT data without contentType](DocumentReference-Dr-hello-world.html) works
-- **DocumentReference can't have contentType populated**
-  - [DocumentReference of a TEXT data with contentType](DocumentReference-Dr-hello-world-mime.html) fails as ig-loader does not work
-  - [DocumentReference of a markdown txt file](DocumentReference-Dr-hello-world-markdown.html) fails as ig-loader does not work
+- [DocumentReference of TEXT without contentType](DocumentReference-Dr-hello-world-no-contentType.html): **FAIL**, `content.attachment.id` retains `ig-loader-hello-world.txt`, with no data
+- [DocumentReference of TEXT with contentType](DocumentReference-Dr-hello-world.html): **FAIL**, the same loader ID remains, with no data
+- [DocumentReference of CQL without contentType](DocumentReference-Dr-hello-world-cql-no-contentType.html): **FAIL**, `content.attachment.id` retains `ig-loader-hello-world.cql`, with no data
+- [DocumentReference of CQL with contentType](DocumentReference-Dr-hello-world-cql.html): **FAIL**, the same loader ID remains, with no data
+- [DocumentReference linking to a CQL Binary](DocumentReference-Dr-hello-world-cql-binary.html): **PASS as a link**, uses an attachment URL with `text/cql`; the target Binary contains the file data
+- **Populating contentType does not cause ig-loader to load these DocumentReference attachments. Omitting it also fails in this build.**
+  - [Another DocumentReference of TEXT with contentType](DocumentReference-Dr-hello-world-mime.html): **FAIL**, the loader ID remains, with no data
+  - [DocumentReference of a markdown txt file](DocumentReference-Dr-hello-world-markdown.html): **FAIL**, the loader ID remains, with no data
+  - [DocumentReference with other attachment metadata](DocumentReference-Dr-hello-world-not.html): **FAIL**, the loader ID remains, with no data
 
-- [DocumentReference with many content attachments both data and Binary](DocumentReference-all-contents.html) works as well as the other examples.
+- [DocumentReference with many content attachments both data and Binary](DocumentReference-all-contents.html): **MIXED**, all six file-loaded attachments (TEXT, PNG, JSON, XML, PDF, CQL) retain their `ig-loader-...` IDs without data. All six Binary URL links point to populated Binary resources; those links do not use attachment ig-loader processing.
+
+The CQL examples use the same `hello-world.cql` source library with `using FHIR version '4.0.1'` and a simple greeting expression in Patient context. The [Hello World Library](Library-HelloWorld.html) **successfully loads** the CQL source: its attachment loader ID is removed, CQL data is embedded, and translated ELM XML is generated. The Binary and DocumentReference patterns demonstrate CQL source (`text/cql`), not translated ELM JSON or XML. The multi-attachment example includes CQL both as an ig-loader attachment and as a link to a Binary.
 
 ### Profiling DocumentReference
 
-**Because contentType can't be populated a Profile on DocumentReference can't require the contentType to be populated if any examples are going to use ig-loader. Thus one either has proper Profiles and can't take advantage of ig-loader, or one can use ig-loader but has to have less strict Profiles.**
+**The intended test is whether a profile can require contentType while using ig-loader. In this build, neither the profiled example with contentType nor the unprofiled examples omitting it successfully load their attachments. Relaxing the profile therefore does not demonstrate a working workaround.**
 - [Profile of DocumentReference that should have contentType required](StructureDefinition-DocumentReferenceFoo.html) 
-- [Profiled DocumentReference](DocumentReference-Dr-Ink-profiled.html) works
+- [Profiled DocumentReference](DocumentReference-Dr-Ink-profiled.html): **FAIL**, `content.attachment.id` retains `ig-loader-ink.png`, with no data
 
 ### Media example
 
 Note that Media is removed from FHIR in R5. So it only exists in R4. Thus recommendation is to use DocumentReference in R4.
 
 - [Profile on Media](StructureDefinition-MediaFoo.html)
-- [Media example](Media-Media-hello-world.html)
-- [Media using ig-loader](Media-Media-Ink-profiled.html)
+- [Media example](Media-Media-hello-world.html): **LINK ONLY**, uses an external URL, not ig-loader
+- [Media using ig-loader](Media-Media-Ink-profiled.html): **FAIL**, `content.id` retains `ig-loader-ink.png`, with no data
 
 ### Bundle warning when it includes a DocumentReference with a url
 
